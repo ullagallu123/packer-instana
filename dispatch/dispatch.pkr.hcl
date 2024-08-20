@@ -7,7 +7,7 @@ packer {
   }
 }
 source "amazon-ebs" "ubuntu-24" {
-  ami_name      = "mongo-{{timestamp}}"
+  ami_name      = "dispatch-{{timestamp}}"
   instance_type = "t2.micro"
   region        = "ap-south-1"
   source_ami    = "ami-0ad21ae1d0696ad58"
@@ -15,18 +15,18 @@ source "amazon-ebs" "ubuntu-24" {
 }
 
 build {
-  name    = "mongo"
+  name    = "dispatch"
   sources = ["source.amazon-ebs.ubuntu-24"]
 
   provisioner "file" {
-    source      = "mongo.sh"
-    destination = "/tmp/mongo.sh"
+    source      = "dispatch.sh"
+    destination = "/tmp/dispatch.sh"
   }
 
   provisioner "shell" {
     inline = [
-      "chmod +x /tmp/mongo.sh",
-      "sudo /tmp/mongo.sh"
+      "chmod +x /tmp/dispatch.sh",
+      "sudo /tmp/dispatch.sh"
       ]
   }
 }
