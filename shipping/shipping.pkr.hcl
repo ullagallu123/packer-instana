@@ -11,7 +11,7 @@ source "amazon-ebs" "ubuntu-24" {
   instance_type = "t2.micro"
   region        = "ap-south-1"
   source_ami    = "ami-0ad21ae1d0696ad58"
-  ssh_name  = "ubuntu"
+  ssh_username   = "ubuntu"
 }
 
 build {
