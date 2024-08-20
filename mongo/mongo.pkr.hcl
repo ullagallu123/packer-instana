@@ -6,18 +6,17 @@ packer {
     }
   }
 }
-
-source "amazon-ebs" "ubuntu-22" {
+source "amazon-ebs" "ubuntu-24" {
   ami_name      = "mongo-{{timestamp}}"
   instance_type = "t2.micro"
   region        = "ap-south-1"
-  source_ami = "ami-0ad21ae1d0696ad58"
-  ssh_username = "ubuntu"
+  source_ami    = "ami-0ad21ae1d0696ad58"
+  ssh_username  = "ubuntu"
 }
 
 build {
   name    = "mongo"
-  sources = ["source.amazon-ebs.ubuntu-22"]
+  sources = ["source.amazon-ebs.ubuntu-24"]
 
   provisioner "file" {
     source      = "mongo.sh"
